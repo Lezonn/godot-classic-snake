@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Classic Snake"
+config/description="Classic snake game using godot engine"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(1.2514e-06, 0.460206, 0.295249, 1)
+boot_splash/image="res://icon.png"
+config/icon="res://icon.png"
 
 [display]
 
