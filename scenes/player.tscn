@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://can4tlm533io4"]
+
+[ext_resource type="PackedScene" uid="uid://dvyfv8vaue138" path="res://scenes/snake_body.tscn" id="1_3rvet"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_rmble"]
+[ext_resource type="Texture2D" uid="uid://cksiu5gst6fmp" path="res://assets/characters/happy_boo/square_body.png" id="2_dqeuj"]
+[ext_resource type="Texture2D" uid="uid://cvs0lh814pk7h" path="res://assets/characters/happy_boo/square_face.png" id="3_f4aqr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rtee6"]
+radius = 20.9739
+height = 43.9046
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_rmble")
+
+[node name="SnakeBody" parent="." instance=ExtResource("1_3rvet")]
+position = Vector2(-70, 0)
+
+[node name="SnakeHead" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="SquareBody" type="Sprite2D" parent="SnakeHead"]
+texture = ExtResource("2_dqeuj")
+
+[node name="SquareFace" type="Sprite2D" parent="SnakeHead"]
+texture = ExtResource("3_f4aqr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead"]
+rotation = 1.54944
+shape = SubResource("CapsuleShape2D_rtee6")
+
+[connection signal="area_entered" from="SnakeHead" to="." method="_on_snake_head_area_entered"]

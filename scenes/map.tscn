@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://b23djfxr6l1j6"]
+
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_4wq7b"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wogts"]
+distance = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ijgjr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_73two"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_usscs"]
+
+[node name="Map" type="Node"]
+script = ExtResource("1_4wq7b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1368.0
+offset_bottom = 870.0
+color = Color(0, 0.468134, 0.25125, 1)
+
+[node name="BottomBorder" type="Area2D" parent="."]
+position = Vector2(1267, 931)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBorder"]
+position = Vector2(1, 1)
+shape = SubResource("WorldBoundaryShape2D_wogts")
+
+[node name="RightBorder" type="Area2D" parent="."]
+position = Vector2(1431, 774)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_ijgjr")
+
+[node name="TopBorder" type="Area2D" parent="."]
+position = Vector2(44, -62)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+position = Vector2(0, -1)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_73two")
+
+[node name="LeftBorder" type="Area2D" parent="."]
+position = Vector2(-64, 82)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_usscs")
+
+[connection signal="area_entered" from="BottomBorder" to="." method="_on_bottom_border_area_entered"]
+[connection signal="area_entered" from="RightBorder" to="." method="_on_right_border_area_entered"]
+[connection signal="area_entered" from="TopBorder" to="." method="_on_top_border_area_entered"]
+[connection signal="area_exited" from="TopBorder" to="." method="_on_top_border_area_exited"]
+[connection signal="area_entered" from="LeftBorder" to="." method="_on_left_border_area_entered"]
+[connection signal="area_exited" from="LeftBorder" to="." method="_on_left_border_area_exited"]
